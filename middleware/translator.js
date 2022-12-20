@@ -70,6 +70,9 @@ const upper = {
 };
 const cyrillicToLatin = (cyrillic) => {
 	let latin = cyrillic;
+	for (const [key, value] of Object.entries(priority)) {
+		latin = latin.replaceAll(key, value);
+	}
 	for (const [key, value] of Object.entries(lower)) {
 		latin = latin.replaceAll(key, value);
 	}
@@ -78,17 +81,27 @@ const cyrillicToLatin = (cyrillic) => {
 	}
 	return latin;
 };
-const priorityLatin = {
+const priority = {
 	є: 'je',
 	ї: 'ji',
 	щ: 'šč',
 	ю: 'ju',
 	я: 'ja',
+	Є: 'Je',
+	Ї: 'Ji',
+	Щ: 'Šč',
+	Ю: 'Ju',
+	Я: 'Ja',
+	// Є: 'JE',
+	// Ї: 'JI',
+	// Щ: 'ŠČ',
+	// Ю: 'JU',
+	// Я: 'JA',
 };
 
 const latinToCyrillic = (latin) => {
 	let cyrillic = latin;
-	for (const [key, value] of Object.entries(priorityLatin)) {
+	for (const [key, value] of Object.entries(priority)) {
 		cyrillic = cyrillic.replaceAll(value, key);
 	}
 	for (const [key, value] of Object.entries(lower)) {
