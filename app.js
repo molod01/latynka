@@ -19,4 +19,4 @@ app.use(
 );
 app.use(router);
 app.use(express.static(path.resolve(__dirname, 'views')));
-app.listen(config.PORT, console.log(`port:${PORT}`));
+app.listen(PORT, console.log(`port:${PORT}`));
