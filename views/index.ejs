@@ -12,30 +12,26 @@
     </script>
     <div class="container">
         <form method="post" class="my-5">
-            <div>
-                <div id="fields" class="input-group">
-                    <div id="cyrillic_input" class="form-floating">
-                        <textarea id="cyrillic" style="min-height: 20rem;" type="text" class="form-control"
-                            name="cyrillic"
-                            placeholder="Введіть що-небудь кирилицею..."><%if(cyrillic){%><%=cyrillic%><%}%></textarea>
-                        <label for="cyrillic">Kyrylycja</label>
-                    </div>
-                    <span id="switcher" onclick="switchTarget();" class="input-group-text"><svg
-                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-arrow-left-right" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z" />
-                        </svg></span>
-                    <div id="latin_input" class="form-floating">
-                        <textarea id="latin" style="min-height: 20rem;" type="text" class="form-control" name="latin"
-                            placeholder="Vvedit' ščo-nebud' latynkoju..."><%if(latin){%><%=latin%><%}%></textarea>
-                        <label for="latin">Latynka</label>
-                    </div>
+            <div id="fields" class="input-group">
+                <div id="cyrillic_input" class="form-floating">
+                    <textarea id="cyrillic" style="min-height: 20rem;" type="text" class="form-control" name="cyrillic"
+                        placeholder="Введіть що-небудь кирилицею..."><%if(cyrillic){%><%=cyrillic%><%}%></textarea>
+                    <label for="cyrillic">Kyrylycja</label>
                 </div>
-                <input id="translationDir" type="text" name="translationDirection" class="d-none"
-                    value="<%=direction%>" />
-                <button type="submit" class="btn btn-outline-success w-100 my-3">Pereklad</button>
+                <span id="switcher" onclick="switchTarget();" class="input-group-text"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                        class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z" />
+                    </svg></span>
+                <div id="latin_input" class="form-floating">
+                    <textarea id="latin" style="min-height: 20rem;" type="text" class="form-control" name="latin"
+                        placeholder="Vvedit' ščo-nebud' latynkoju..."><%if(latin){%><%=latin%><%}%></textarea>
+                    <label for="latin">Latynka</label>
+                </div>
             </div>
+            <input id="translationDir" type="text" name="translationDirection" class="d-none" value="<%=direction%>" />
+            <button type="submit" class="btn btn-outline-success w-100 my-3">Pereklad</button>
         </form>
     </div>
     <script>
