@@ -1,12 +1,15 @@
 import { Router } from 'express';
 import { translate } from '../middleware/translator.js';
 
-let data = {
-	cyrillic: undefined,
-	latin: undefined,
-	direction: undefined,
+const clearData = () => {
+	return {
+		cyrillic: undefined,
+		latin: undefined,
+		direction: undefined,
+	};
 };
 
+let data = clearData();
 const router = Router();
 
 router
@@ -25,5 +28,10 @@ router
 		};
 		res.redirect('/');
 	});
+
+router.route('/clear').get((req, res) => {
+	data = clearData();
+	res.redirect('/');
+});
 
 export default router;
