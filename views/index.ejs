@@ -1,5 +1,6 @@
 <%- layout('layouts/layout.ejs')%>
     <script>
+        const min_height = "min-height: 13rem; "
         const replaceInputs = () => {
             let parent = document.getElementById('fields')
             let textarea = document.getElementsByClassName('form-floating')
@@ -8,24 +9,37 @@
         const switchTarget = () => {
             replaceInputs()
             direction.value = direction.value === 'toLatin' ? 'toCyrillic' : 'toLatin'
+            if (window.screen.width <= 997) {
+                if (direction.value === 'toLatin') {
+
+                    cyrillic.style = min_height + "border-radius: .375rem .375rem 0 0;"
+                    latin.style = min_height + "border-radius: 0 0 .375rem .375rem;"
+                } else {
+                    cyrillic.style = min_height + "border-radius: 0 0 .375rem .375rem;"
+                    latin.style = min_height + "border-radius: .375rem .375rem 0 0;"
+                }
+            }
+
         }
+
     </script>
-    <div class="container">
-        <form method="post" class="my-5">
+    <div class="container-fluid">
+        <form method="post" class="my-3 mx-2">
             <div id="fields" class="input-group">
                 <div id="cyrillic_input" class="form-floating">
-                    <textarea id="cyrillic" style="min-height: 20rem;" type="text" class="form-control" name="cyrillic"
+                    <textarea id="cyrillic" style="min-height: 13rem;" type="text" class="form-control h-auto"
+                        name="cyrillic"
                         placeholder="Введіть що-небудь кирилицею..."><%if(cyrillic){%><%=cyrillic%><%}%></textarea>
                     <label for="cyrillic">Kyrylycja</label>
                 </div>
-                <span id="switcher" onclick="switchTarget();" class="input-group-text"><svg
+                <span id="switcher" onclick="switchTarget();" class="input-group-text" style="border-radius: 0;"><svg
                         xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
                         class="bi bi-arrow-left-right" viewBox="0 0 16 16">
                         <path fill-rule="evenodd"
                             d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z" />
                     </svg></span>
                 <div id="latin_input" class="form-floating">
-                    <textarea id="latin" style="min-height: 20rem;" type="text" class="form-control" name="latin"
+                    <textarea id="latin" style="min-height: 13rem;" type="text" class="form-control h-auto" name="latin"
                         placeholder="Vvedit' ščo-nebud' latynkoju..."><%if(latin){%><%=latin%><%}%></textarea>
                     <label for="latin">Latynka</label>
                 </div>
@@ -39,4 +53,40 @@
         if (direction.value != 'toLatin') {
             replaceInputs()
         }
+        const onresize = () => {
+            var fields = document.getElementById("fields");
+            var cyrillic_input = document.getElementById("cyrillic_input");
+            var latin_input = document.getElementById("latin_input");
+            var switcher = document.getElementById("switcher");
+
+            if (window.screen.width <= 997) {
+                fields.classList.remove("input-group");
+                fields.classList.add("col");
+                cyrillic_input.classList.add('row')
+                latin_input.classList.add('row')
+                switcher.classList.add('row')
+
+                cyrillic_input.style = "margin-right: 0.089rem; margin-left: 0.089rem;"
+                latin_input.style = "margin-right: 0.089rem; margin-left: 0.089rem; "
+                switcher.style = "margin-right: 0.089rem; margin-left: 0.089rem; border-radius: 0;"
+
+                latin.style = min_height + "border-radius: 0 0 .375rem .375rem;"
+                cyrillic.style = min_height + "border-radius: .375rem .375rem 0 0;"
+            } else {
+                fields.classList.add("input-group");
+                fields.classList.remove("col");
+                cyrillic_input.classList.remove('row')
+                latin_input.classList.remove('row')
+                switcher.classList.remove('row')
+
+                cyrillic_input.style = "margin-right: 0; margin-left: 0;"
+                latin_input.style = "margin-right: 0; margin-left: 0;"
+                switcher.style = "margin-right: 0; margin-left: 0; border-radius: 0;"
+
+                cyrillic.style = min_height
+                latin.style = min_height
+            }
+        }
+        onresize()
+        window.onresize = onresize;
     </script>
